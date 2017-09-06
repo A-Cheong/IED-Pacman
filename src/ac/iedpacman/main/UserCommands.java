@@ -1,5 +1,7 @@
 package ac.iedpacman.main;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -53,7 +55,12 @@ public class UserCommands {
                         System.out.println("Please enter proper number (between 0 to 5), or direction.");
                     }
                 } else if (pacmanPlaced && ((Objects.equals(splitInput[0], new String("MOVE"))))) {
-                    movePacmanForward(pacman.getFacing());
+                    if(movePacmanForward(pacman.getFacing())) {
+                        System.out.println("Moved forward successfully");
+                    }
+                    else{
+                        System.out.println("Out of bounds, please change directions and move again.");
+                    }
 
                 } else {
                     System.out.println("Incorrect command, please try placing Pacman first.");
@@ -72,31 +79,52 @@ public class UserCommands {
 
         switch(direction) {
             case "WEST":
+
                 tempY = pacman.getyPosition();
-                tempY--;
                 if (validateCoordinates(--tempY)) {
                     pacman.setyPosition(tempY);
+                    return true;
                 }
-                break;
+                else {
+                    return false;
+                }
+
             case "SOUTH":
-                tempX = pacman.getyPosition();
-                tempX--;
-                pacman.setyPosition(tempX);
-                break;
+
+                tempX = pacman.getxPosition();
+                if (validateCoordinates(--tempX)) {
+                    pacman.setxPosition(tempX);
+                    return true;
+                }
+                else{
+                    return false;
+                }
+
             case "EAST":
+
                 tempY = pacman.getyPosition();
-                tempY++;
-                pacman.setyPosition(tempY);
-                break;
+                if (validateCoordinates(++tempY)) {
+                    pacman.setyPosition(tempY);
+                    return true;
+                }
+                else{
+                    return false;
+                }
+
             case "NORTH":
-                tempX = pacman.getyPosition();
-                tempX++;
-                pacman.setyPosition(tempX);
-                break;
+                System.out.println("im in north");
+                tempX = pacman.getxPosition();
+                if (validateCoordinates(++tempX)) {
+                    pacman.setxPosition(tempX);
+                    return true;
+                }
+                else{
+                    return false;
+                }
+
             default:
                 throw new IllegalArgumentException(direction + " is an invalid direction");
         }
-        return false;
     }
 
     public boolean validateCoordinates (int coordinate)
