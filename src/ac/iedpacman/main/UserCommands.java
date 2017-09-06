@@ -15,16 +15,11 @@ public class UserCommands {
 
     public void playPacman()
     {
-
         Boolean pacmanPlaced = false;
         Boolean commandRun = true;
 
         while(commandRun)
         {
-        System.out.println(pacman.getxPosition());
-        System.out.println(pacman.getyPosition());
-        System.out.println(pacman.getFacing());
-
             try {
                 // getting the input stream from user in the command line
                 BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
@@ -61,12 +56,13 @@ public class UserCommands {
                     else{
                         System.out.println("Out of bounds, please change directions and move again.");
                     }
-
                 } else if (pacmanPlaced && ((Objects.equals(splitInput[0], new String("LEFT"))))){
                         movePacmanLeft(pacman.getFacing());
                 } else if (pacmanPlaced && ((Objects.equals(splitInput[0], new String("RIGHT"))))){
                         movePacmanRight(pacman.getFacing());
 
+                } else if (pacmanPlaced && ((Objects.equals(splitInput[0], new String("REPORT"))))){
+                    reportCoordinates();
                 } else if (((Objects.equals(splitInput[0], new String("EXIT"))))){
                         break;
                 } else {
@@ -77,6 +73,12 @@ public class UserCommands {
             }
         }
 
+    }
+
+    public void reportCoordinates(){
+        System.out.println("X-Position is: " + pacman.getxPosition());
+        System.out.println("Y-Position is: " + pacman.getyPosition());
+        System.out.println("Direction is: " + pacman.getFacing());
     }
 
     public void movePacmanRight (String direction)
