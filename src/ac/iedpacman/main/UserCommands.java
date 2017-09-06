@@ -62,6 +62,13 @@ public class UserCommands {
                         System.out.println("Out of bounds, please change directions and move again.");
                     }
 
+                } else if (pacmanPlaced && ((Objects.equals(splitInput[0], new String("LEFT"))))){
+                        movePacmanLeft(pacman.getFacing());
+                } else if (pacmanPlaced && ((Objects.equals(splitInput[0], new String("RIGHT"))))){
+                        movePacmanRight(pacman.getFacing());
+
+                } else if (((Objects.equals(splitInput[0], new String("EXIT"))))){
+                        break;
                 } else {
                     System.out.println("Incorrect command, please try placing Pacman first.");
                 }
@@ -72,6 +79,41 @@ public class UserCommands {
 
     }
 
+    public void movePacmanRight (String direction)
+    {
+        switch(direction) {
+            case "WEST":
+                pacman.setFacing("NORTH");
+                break;
+            case "SOUTH":
+                pacman.setFacing("WEST");
+                break;
+            case "EAST":
+                pacman.setFacing("SOUTH");
+                break;
+            case "NORTH":
+                pacman.setFacing("EAST");
+                break;
+        }
+    }
+
+    public void movePacmanLeft (String direction)
+    {
+        switch(direction) {
+            case "WEST":
+                pacman.setFacing("SOUTH");
+                break;
+            case "SOUTH":
+                pacman.setFacing("EAST");
+                break;
+            case "EAST":
+                pacman.setFacing("NORTH");
+                break;
+            case "NORTH":
+                pacman.setFacing("WEST");
+                break;
+        }
+    }
     public boolean movePacmanForward(String direction)
     {
         int tempY;
@@ -112,7 +154,7 @@ public class UserCommands {
                 }
 
             case "NORTH":
-                System.out.println("im in north");
+
                 tempX = pacman.getxPosition();
                 if (validateCoordinates(++tempX)) {
                     pacman.setxPosition(tempX);
