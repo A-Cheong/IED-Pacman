@@ -2,11 +2,7 @@ package ac.iedpacman.main;
 
 public class Board {
 
-    public Board()
-    {
-
-    }
-
+    // shows the board as a visual aid
     public void initialiseBoard(char board[][]){
 
         // cycle through rows from end to start

@@ -2,6 +2,7 @@ package ac.iedpacman.main;
 
 public class Pacman {
 
+    // variables to hold pacmans current position and direction
     private int xPosition;
     private int yPosition;
     private String facing;
@@ -22,6 +23,7 @@ public class Pacman {
         this.facing = facing;
     }
 
+    // getters and setters
     public int getxPosition() {
         return xPosition;
     }
