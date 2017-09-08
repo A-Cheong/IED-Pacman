@@ -24,9 +24,7 @@ public class UserCommands {
 
         while(commandRun)
         {
-
             try {
-
                 // if there is no file to read then ask user for input
                 if(!fileToRead) {
                     System.out.println("Please enter your command: ");
