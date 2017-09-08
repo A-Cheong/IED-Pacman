@@ -10,6 +10,7 @@ Easiest way to just run the program is to:
 3. Navigate to /out/artifacts/ from the root of the directory
 4. Run the command "java -jar IED_Pacman_jar" through your CLI 
 
+NOTE: ensure that the tests(.txt) are in the root of the project folder. 
 ### Prerequisites
 
 Ensure that you have the latest JRE installed
@@ -21,6 +22,9 @@ My version is 1.8.0_144
 3. Download the right version for your setup
 4. Follow the prompts to install it
 
+### Testing code
+
+Depending on your IDE, ensure that your run configuration is set to JUnit.
 
 ## Authors
 
