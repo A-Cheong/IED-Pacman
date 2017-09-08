@@ -7,15 +7,6 @@ public class Pacman {
     private int yPosition;
     private String facing;
 
-    // initial constructor
-    public Pacman()
-    {
-        xPosition = 0;
-        yPosition = 0;
-        facing = "";
-    }
-
-    // overloaded constructor
     public Pacman(int xPosition, int yPosition, String facing)
     {
         this.xPosition = xPosition;

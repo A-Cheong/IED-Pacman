@@ -1,4 +1,7 @@
-package ac.iedpacman.main;
+package ac.iedpacman.user;
+
+import ac.iedpacman.main.Board;
+import ac.iedpacman.main.Pacman;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,22 +12,36 @@ import java.util.Objects;
 
 public class UserCommands {
 
-    Pacman pacman = new Pacman();
+    Pacman pacman = new Pacman(0 ,0, "");
 
-    public void playPacman()
+    public void playPacman(String fileCommands[], boolean fileToRead)
     {
         Boolean pacmanPlaced = false; // for initial PLACE command
         Boolean commandRun = true;
+        BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+        int commandNumber = 0;
+        String placement = "";
 
         while(commandRun)
         {
-            try {
-                // getting the input stream from user in the command line
-                BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
-                System.out.println("Please enter your command: ");
-                String placement = userInput.readLine();
 
-                // using split() as StringTokenizer is a legacy class
+            try {
+
+                // if there is no file to read then ask user for input
+                if(!fileToRead) {
+                    System.out.println("Please enter your command: ");
+                     placement = userInput.readLine();
+                }
+                else{
+                    // read the amount of commands in the file, if none then exit
+                    if (commandNumber < fileCommands.length) {
+                        placement = fileCommands[commandNumber];
+                        commandNumber++;
+                    }
+                    else {
+                        break;
+                    }
+                }
                 // regex to split on a space (based off of whitespace regex)
                 // string can still get first command regardless of splitting with regex
                 String[] splitInput = placement.split("\\s+");
@@ -50,7 +67,6 @@ public class UserCommands {
                     // method to move pacman forward
                 } else if (pacmanPlaced && ((Objects.equals(splitInput[0], new String("MOVE"))))) {
                     if(movePacmanForward(pacman.getFacing())) {
-                        System.out.println("Moved forward successfully");
                     }
                     else{
                         System.out.println("Out of bounds, please change directions and move again.");
@@ -68,7 +84,7 @@ public class UserCommands {
                 } else if (((Objects.equals(splitInput[0], new String("EXIT"))))){
                         commandRun = false;
                 } else {
-                    System.out.println("Incorrect command, please try placing Pacman first.");
+                    System.out.println("Unknown command.");
                 }
             } catch (IOException ioe) {
                 ioe.printStackTrace();
@@ -125,7 +141,6 @@ public class UserCommands {
 
         switch(direction) {
             case "WEST":
-
                 tempY = pacman.getyPosition();
                 if (validateCoordinates(--tempY)) {
                     pacman.setyPosition(tempY);
@@ -136,7 +151,6 @@ public class UserCommands {
                 }
 
             case "SOUTH":
-
                 tempX = pacman.getxPosition();
                 if (validateCoordinates(--tempX)) {
                     pacman.setxPosition(tempX);
@@ -147,7 +161,6 @@ public class UserCommands {
                 }
 
             case "EAST":
-
                 tempY = pacman.getyPosition();
                 if (validateCoordinates(++tempY)) {
                     pacman.setyPosition(tempY);
@@ -158,7 +171,6 @@ public class UserCommands {
                 }
 
             case "NORTH":
-
                 tempX = pacman.getxPosition();
                 if (validateCoordinates(++tempX)) {
                     pacman.setxPosition(tempX);
