@@ -48,7 +48,7 @@ public class Menu
                 // if so the parse that array into playPacman()
                 try {
                     ReadFile file = new ReadFile(file_name);
-                    String[] commands = file.OpenFile();
+                    String[] commands = file.openFile();
                     commandsToExecute.playPacman(commands,true);
                 } catch (IOException e) {
                     System.out.println(e.getMessage());

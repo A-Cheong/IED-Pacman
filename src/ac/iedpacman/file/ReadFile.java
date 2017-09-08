@@ -14,7 +14,7 @@ public class ReadFile {
     }
 
     // String[] will contain the lines read
-    public String[] OpenFile() throws IOException {
+    public String[] openFile() throws IOException {
 
         FileReader fr = new FileReader(path); // reads bytes from a text file
         BufferedReader commandReader = new BufferedReader(fr); // passing fr to Bufferedreader to read a whole line

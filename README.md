@@ -24,8 +24,12 @@ My version is 1.8.0_144
 
 ### Testing code
 
-Depending on your IDE, ensure that your run configuration is set to JUnit.
+Testing library is **JUnit4**.
 
+Depending on your IDE, ensure that your run configuration is set to JUnit and that the proper class name is used 
+for that specific setting.
+
+All JUnit test code is located within the "tests" folder.
 ## Authors
 
 * **Alex Cheong** - *Initial work* - [A-Cheong](https://github.com/A-Cheong)
